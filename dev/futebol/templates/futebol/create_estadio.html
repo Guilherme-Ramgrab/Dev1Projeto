@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block direita %}
+    <h2>Novo Estadio</h2>
+    <hr>
+    <form id="estadio" action="{% url 'futebol:create_estadio' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success btn-lg" form="estadio" value="Salvar">Salvar</button>
+        <button type="reset" class="btn btn-danger btn-lg" form="estadio" value="Reset">Limpar</button>
+    </form>
+
+{% endblock direita %}

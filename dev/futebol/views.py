@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 from datetime import datetime
 from futebol.models.estadio import Estadio
-from futebol.form import EstadioForm
+from futebol.forms import EstadioForm
 # Create your views here.
 
 
