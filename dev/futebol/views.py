@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
 from datetime import datetime
 from futebol.models.estadio import Estadio
@@ -35,3 +35,19 @@ def create(request):
         'form': form
     }
     return render(request, 'futebol/create_estadio.html', context)
+
+def update(request, estadio_id):
+    estadio = get_object_or_404(Estadio, pk=estadio_id)
+    if request.method == 'POST':
+        form = EstadioForm(request.POST, instance=estadio)
+        if form.is_valid():
+            form.save()
+            return redirect('futebol:estadio')
+    else:
+        form = EstadioForm(instance=estadio)
+
+    context = {
+        'form': form,
+        'estadio': estadio,
+    }
+    return render(request, 'futebol/edit_estadio.html', context)

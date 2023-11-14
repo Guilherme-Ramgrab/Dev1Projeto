@@ -17,6 +17,9 @@
                     <p>Inauguração: {{ estadio.inauguracao|date:"d \d\e M \d\e Y."}}</p>
                 </div>
             </div>
+            <div>
+                <a class="btn btn-primary btn-lg" role="button" href="{% url 'futebol:edit_estadio' estadio.id %}">Editar</a>
+            </div>
             <br />
             <hr>
         {% endfor %}
@@ -25,5 +28,9 @@
             <h2>Nenhum estádio cadastrado!</h2>
 
     {% endif %}
+
+    <div>
+        <a class="btn btn-success btn-lg" role="button" href="{% url 'futebol:create_estadio' %}">Novo Estádio</a>
+    </div>
 
 {% endblock direita %}
