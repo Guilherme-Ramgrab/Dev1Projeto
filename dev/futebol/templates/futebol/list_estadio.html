@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block direita %}
+
+    {% if estadio %}
+        <h2> Lista de Estadios</h2>
+
+        <hr>
+
+        {% for estadio in estadios %}
+            <div class="row">
+                <h3>{{ estadio.nome }}</h3>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <p>Código: {{ estadio.cod }}</p>
+                    <p>Inauguração: {{ estadio.inauguracao}}</p>
+                </div>
+            </div>
+            <br />
+            <hr>
+        {% endfor %}
+
+        {% else %}
+            <h2>Nenhum estádio cadastrado!</h2>
+
+    {% endif %}
+
+{% endblock direita %}
