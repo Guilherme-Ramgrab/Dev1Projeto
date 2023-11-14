@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 from datetime import datetime
 from futebol.models.estadio import Estadio
+from futebol.form import EstadioForm
 # Create your views here.
 
 
@@ -20,3 +21,17 @@ def list(request):
         'estadios': estadios
     }
     return render(request, 'futebol/list_estadio.html', context)
+
+def create(request):
+    if request.method == 'POST':
+        form = EstadioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('futebol:estadio')
+    else:
+        form = EstadioForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'futebol/create_estadio.html', context)

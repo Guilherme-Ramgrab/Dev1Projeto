@@ -2,7 +2,7 @@
 
 {% block direita %}
 
-    {% if estadio %}
+    {% if estadios %}
         <h2> Lista de Estadios</h2>
 
         <hr>
@@ -14,7 +14,7 @@
             <div class="content">
                 <div class="row">
                     <p>Código: {{ estadio.cod }}</p>
-                    <p>Inauguração: {{ estadio.inauguracao}}</p>
+                    <p>Inauguração: {{ estadio.inauguracao|date:"d \d\e M \d\e Y."}}</p>
                 </div>
             </div>
             <br />
