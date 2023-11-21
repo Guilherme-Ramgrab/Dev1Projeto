@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block direita %}
+    <h1>Obrigado pela sua mensagem</h1>
+    <br/>
+    <p>A mensagem foi enviada conforme segue.</p>
+    {% for field in form %}
+        <p><strong> {{ field.label }}</strong> {{ field.value }}</p>
+    {% endfor %}
+
+{% endblock direita %}
