@@ -51,3 +51,10 @@ def update(request, estadio_id):
         'estadio': estadio,
     }
     return render(request, 'futebol/edit_estadio.html', context)
+
+def read(request, estadio_id):
+    estadio = get_object_or_404(Estadio, pk=estadio_id)
+    context = {
+        'estadio': estadio,
+    }
+    return render(request, 'futebol/read_estadio.html', context)
