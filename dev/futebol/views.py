@@ -58,3 +58,20 @@ def read(request, estadio_id):
         'estadio': estadio,
     }
     return render(request, 'futebol/read_estadio.html', context)
+
+def delete(request, estadio_id):
+    estadio = get_object_or_404(Estadio, pk=estadio_id)
+    try:
+        if request.method == 'POST':
+            v_estadio_id = request.POST.get("estadio_id", None)
+            if int(v_estadio_id) == estadio_id:
+                estadio.delete()
+                return redirect('futebol:estadio')
+        else:
+            context = {
+                'estadio': estadio,
+            }
+            return render(request, 'futebol/delete_estadio.html', context)
+    except:
+        context = {}
+        return render(request, "futebol/list_estadio.html", context)

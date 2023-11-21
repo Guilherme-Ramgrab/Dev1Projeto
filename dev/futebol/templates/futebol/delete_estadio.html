@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block direita %}
+
+    <h2>Deletar {{ estadio.nome }}</h2>
+    <hr>
+    <div class="content">
+        <div class="row">
+            <strong>Código: </strong> <p>{{ estadio.cod }}</p>
+            <strong>Inauguração:</strong><p>{{ estadio.inaufuracao|date:"d \d\e M \d\e Y." }}</p>
+        </div>
+    </div>
+    <div>
+        <h3>Esta ação é irreversível! Deja deletar os dados mesmo assim?</h3>
+        <form id="estadio" action="{% url 'futebol:delete_estadio' estadio.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" id="estadio_id" name="estadio_id" value="{{ estadio.id }}">
+            <button type="submit" class="btn btn-danger btn-lg" form="estadio" value="Deletar">Sim, deletar!</button>
+            <a class="btn btn-light btn-lg" role="button" href="{% url 'futebol:estadio' %}">Cancelar</a>
+        </form>
+    </div>
+
+{% endblock direita %}
