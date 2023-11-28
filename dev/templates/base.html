@@ -42,6 +42,12 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+      {% if user.is_authenticated %}
+        <span class="navbar-text text-white px-2"> Olá, {{ user.first_name }}</span>
+        <a class="nav-link text-white px-2" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a class="nav-link text-white px-2" href="{% url 'login' %}">Login</a>
+      {% endif %}
     </div>
   </div>
 </nav>
@@ -49,18 +55,21 @@
 <div class="container text-center">
   <!-- Stack the columns on mobile by making one full-width and the other half-width -->
   <div class="row">
-    <div class="col-6 col-md-4">
-      {% block esquerda %}
-      <h1>Olá visitante!</h1>
-      {% endblock esquerda %}
-    </div>
-    <div class="col-md-8">
-      {% block direita %}
-      <h2>Conteúdo</h2>
-      {% endblock direita %}
-    </div>
-
+    {% block content %}
+      <div class="col-6 col-md-4">
+        {% block esquerda %}
+          <h1>Olá visitante!</h1>
+        {% endblock esquerda %}
+      </div>
+      <div class="col-md-8">
+        {% block direita %}
+          <h2>Conteúdo</h2>
+        {% endblock direita %}
+      </div>
+    {% endblock content %}
   </div>
+
+</div>
 
 
 
