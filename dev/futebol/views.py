@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from datetime import datetime
 from futebol.models.estadio import Estadio
 from futebol.forms import EstadioForm
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 
 
@@ -15,6 +16,7 @@ def teste(request):
                f"<br />{agora}</h1></body></html>"
     return HttpResponse(mensagem)
 
+@login_required
 def list(request):
     estadios = Estadio.objects.all().order_by('-inauguracao')
     context = {
@@ -22,6 +24,8 @@ def list(request):
     }
     return render(request, 'futebol/list_estadio.html', context)
 
+@login_required
+@permission_required('futebol.add_estadio', raise_exception=True)
 def create(request):
     if request.method == 'POST':
         form = EstadioForm(request.POST)
@@ -36,6 +40,8 @@ def create(request):
     }
     return render(request, 'futebol/create_estadio.html', context)
 
+@login_required
+@permission_required('futebol.change_estadio', raise_exception=True)
 def update(request, estadio_id):
     estadio = get_object_or_404(Estadio, pk=estadio_id)
     if request.method == 'POST':
@@ -52,6 +58,8 @@ def update(request, estadio_id):
     }
     return render(request, 'futebol/edit_estadio.html', context)
 
+@login_required
+@permission_required('futebol.view_estadio', raise_exception=True)
 def read(request, estadio_id):
     estadio = get_object_or_404(Estadio, pk=estadio_id)
     context = {
@@ -59,6 +67,8 @@ def read(request, estadio_id):
     }
     return render(request, 'futebol/read_estadio.html', context)
 
+@login_required
+@permission_required('futebol.delete_estadio', raise_exception=True)
 def delete(request, estadio_id):
     estadio = get_object_or_404(Estadio, pk=estadio_id)
     try:

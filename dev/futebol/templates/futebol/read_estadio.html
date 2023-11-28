@@ -10,7 +10,9 @@
         </div>
     </div>
     <div>
-        <a class="btn btn-primary btn-lg" role="button" href="{% url 'futebol:edit_estadio' estadio.id %}">Editar</a>
+        {% if perms.futebol.change_estadio %}
+            <a class="btn btn-primary btn-lg" role="button" href="{% url 'futebol:edit_estadio' estadio.id %}">Editar</a>
+        {% endif  %}
         <a class="btn btn-light btn-lg" role="button" href="{% url 'futebol:estadio' %}">Voltar</a>
     </div>
 
