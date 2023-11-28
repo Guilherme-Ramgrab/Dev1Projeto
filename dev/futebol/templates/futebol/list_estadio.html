@@ -21,6 +21,9 @@
                 {% if perms.futebol.view_estadio %}
                     <a class="btn btn-secondary btn-lg" role="button" href="{% url 'futebol:read_estadio' estadio.id %}">Detalhar</a>
                 {% endif  %}
+                {% if perms.futebol.reserve_estadio %}
+                    <a class="btn btn-warning btn-lg text-white" role="button" href="{% url 'futebol:reserve_estadio' estadio.id %}">Reservar</a>
+                {% endif  %}
                 {% if perms.futebol.change_estadio %}
                     <a class="btn btn-primary btn-lg" role="button" href="{% url 'futebol:edit_estadio' estadio.id %}">Editar</a>
                 {% endif  %}

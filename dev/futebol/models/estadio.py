@@ -20,6 +20,9 @@ class Estadio(BaseModel):
 
     class Meta:
         abstract = False
+        permissions = {
+            ('reserve_estadio', 'can reserve Estadios')
+        }
 
     def __str__(self):
         return self.nome

@@ -85,3 +85,14 @@ def delete(request, estadio_id):
     except:
         context = {}
         return render(request, "futebol/list_estadio.html", context)
+
+
+@login_required
+@permission_required('futebol.reserve_estadio', raise_exception=True)
+def reserve(request, estadio_id):
+    estadio = get_object_or_404(Estadio, pk=estadio_id)
+    try:
+        # TODO: Codigo para reserva de estadio
+        return redirect('home')
+    except:
+        return redirect('futebol:estadio')
