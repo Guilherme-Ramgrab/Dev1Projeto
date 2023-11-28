@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('futebol/', include('futebol.urls')),
     path('contato/', views.contact, name="contact"),
+    path('contas/', include('django.contrib.auth.urls')),
 
 ]
