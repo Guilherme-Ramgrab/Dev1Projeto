@@ -25,5 +25,6 @@ urlpatterns = [
     path('futebol/', include('futebol.urls')),
     path('contato/', views.contact, name="contact"),
     path('contas/', include('django.contrib.auth.urls')),
+    path('register/', views.register, name="register"),
 
 ]

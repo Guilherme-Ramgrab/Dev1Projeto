@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Registrar-se</h2>
+    <hr>
+    <form id="user" action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td> {{ form.username.label_tag}} </td>
+                <td class="form-control"> {{ form.username}} </td>
+            </tr>
+            <tr>
+                <td> {{ form.email.label_tag }} </td>
+                <td class="form-control"> {{ form.email }} </td>
+            </tr>
+            <tr>
+                <td> {{ form.password1.label_tag }} </td>
+                <td class="form-control"> {{ form.password1 }} </td>
+            </tr>
+            <tr>
+                <td> {{ form.password2.label_tag }} </td>
+                <td class="form-control"> {{ form.password2 }} </td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-success btn-lg" form="user" value="Salvar">Salvar</button>
+        <button type="reset" class="btn btn-danger btn-lg" form="user" value="Reset">Limpar</button>
+    </form>
+
+{% endblock content %}

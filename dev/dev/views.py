@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from dev.forms import ContactForm
+from dev.forms import RegisterForm
 
 
 def index(request):
@@ -35,3 +36,17 @@ def contact(request):
             'form': form
         }
         return render(request, 'contato.html', context)
+
+def register(response):
+    if response.method == 'POST':
+        form = RegisterForm(response.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = RegisterForm()
+
+    context = {
+        'form': form
+    }
+    return render(response, 'registration/register.html', context)
