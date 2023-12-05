@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from dev.forms import ContactForm
 from dev.forms import RegisterForm
 

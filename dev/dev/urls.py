@@ -23,6 +23,7 @@ urlpatterns = [
     path('<str:nome>', views.nome, name="home_nome"),
     path('admin/', admin.site.urls),
     path('futebol/', include('futebol.urls')),
+    path('services/', include('services.urls')),
     path('contato/', views.contact, name="contact"),
     path('contas/', include('django.contrib.auth.urls')),
     path('register/', views.register, name="register"),
